@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Montecito Candle Company</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="The Montecito Candle Company logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-image">
+        <img src="placeholder-hero-image.jpg" alt="A beautiful candlelit scene">
+      </div>
+      <div class="hero-text">
+        <h1>The Montecito Candle Company</h1>
+        <p>Handcrafted candles made with love in Montecito, California.</p>
+        <a href="#" class="btn">Shop Now</a>
+      </div>
+    </section>
+    <section class="products">
+      <h2>Our Products</h2>
+      <div class="product-grid">
+        <div class="product">
+          <img src="placeholder-product1.jpg" alt="Product 1">
+          <h3>Lavender & Sage</h3>
+          <p>A calming and relaxing blend of lavender and sage.</p>
+          <a href="product1.html" class="btn">Learn More</a>
+          <button onclick="addToCart(1, 1)" class="btn">Add to Cart</button>
+        </div>
+
+        <div class="product">
+          <img src="placeholder-product2.jpg" alt="Product 2">
+          <h3>Citrus & Basil</h3>
+          <p>An invigorating and refreshing blend of citrus and basil.</p>
+          <a href="product2.html" class="btn">Learn More</a>
+          <button onclick="addToCart(2, 1)" class="btn">Add to Cart</button>
+        </div>
+
+        <div class="product">
+          <img src="placeholder-product3.jpg" alt="Product 3">
+          <h3>Vanilla & Sandalwood</h3>
+          <p>A warm and comforting blend of vanilla and sandalwood.</p>
+          <a href="product3.html" class="btn">Learn More</a>
+          <button onclick="addToCart(3, 1)" class="btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <span id="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cart-count">0</span>
+      </span>
+      <a href="checkout.html" class="btn">Checkout</a>
+    </section>
+
+    <section class="search-bar">
+      <input type="text" id="search-input" placeholder="Search for products...">
+      <div id="search-results"></div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2023 The Montecito Candle Company</p>
+  </footer>
+
+  <script>
+    let cart = {}; // Initialize an empty cart object
+
+    function addToCart(productId, quantity) {
+      // Add product to cart
+      if (cart[productId]) {
+        cart[productId] += quantity;
+      } else {
+        cart[productId] = quantity;
+      }
+
+      // Update cart count display
+      const cartCountElement = document.getElementById('cart-count');
+      const currentCount = parseInt(cartCountElement

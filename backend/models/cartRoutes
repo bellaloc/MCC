@@ -1,0 +1,55 @@
+// Import dependencies
+const express = require('express');
+const router = express.Router();
+
+// Define route handlers
+router.post('/api/cart/add', async (req, res) => {
+  const productId = req.body.productId;
+  const quantity = req.body.quantity;
+
+  // Add item to cart and update cart data
+  await addToCart(productId, quantity);
+
+  res.json({ message: 'Item added to cart' });
+});
+
+// Export the router module
+module.exports = router;
+
+
+function addToCart(productId, quantity) {
+  // Check if cart exists in session storage or database
+  if (!cart) {
+    cart = {};
+  }
+  // Update cart with product and quantity
+  cart[productId] = quantity;
+  // Save cart to session storage or database
+  saveCart(cart);
+}
+let cart = {}; // Initialize an empty cart object
+
+function addToCart(productId, quantity) {
+  // Check if product already exists in cart
+  if (productId in cart) {
+    cart[productId] += quantity; // Update existing quantity
+  } else {
+    cart[productId] = quantity; // Add new product to cart
+  }
+
+  updateCartCount(); // Update cart count display
+}
+
+function removeFromCart(productId) {
+  delete cart[productId]; // Remove product from cart
+  updateCartCount(); // Update cart count display
+}
+
+function updateCartCount() {
+  let count = 0;
+  for (let productId in cart) {
+    count += cart[productId];
+  }
+
+  document.getElementById('cart-count').textContent = count; // Update cart count display
+}
